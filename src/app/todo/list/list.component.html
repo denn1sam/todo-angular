@@ -1,1 +1,26 @@
-<h1>works</h1>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Todo</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="todo__card">
+  <mat-card-header class="todo__header">
+    <mat-card-title>ToDo list</mat-card-title>
+    <todo-input class="todo__input"></todo-input>
+    <button
+        mat-flat-button
+        color="primary"
+        class="todo__add-button"
+    >
+      ADD
+    </button>
+  </mat-card-header>
+  <mat-card-content class="todo__list-content">
+    <todo-list-item></todo-list-item>
+  </mat-card-content>
+  <mat-card-footer class="todo__footer">
+    <p>all: 0</p>
+    <p>done: 0</p>
+  </mat-card-footer>
+</mat-card>

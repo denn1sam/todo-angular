@@ -1,0 +1,33 @@
+.todo {
+  &__card {
+    width: 500px;
+    margin: 3em auto;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &__input {
+    grid-column: 1 / 6;
+  }
+
+  &__add-button {
+    font-size: 1.5em;
+    height: calc(100% - 25.5px);
+  }
+
+  &__footer {
+    display: flex;
+    background: #f3f3f3;
+    p {
+      padding: 0 1em;
+    }
+  }
+}
+
+::ng-deep .mat-card-header-text {
+  grid-column: 1 / -1;
+  padding: 0 0 1em 0;
+}

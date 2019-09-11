@@ -1,0 +1,17 @@
+.list {
+  &__item {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    p {
+      grid-column: 2 / 12;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+  }
+
+  &__action-btn {
+    grid-column: 12 / -1;
+  }
+}
