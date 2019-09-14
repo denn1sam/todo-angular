@@ -7,17 +7,24 @@
 <mat-card class="todo__card">
   <mat-card-header class="todo__header">
     <mat-card-title>ToDo list</mat-card-title>
-    <todo-input class="todo__input"></todo-input>
+    <todo-input
+        class="todo__input"
+        (inputValue)="setInputValue($event)"
+    ></todo-input>
     <button
         mat-flat-button
         color="primary"
         class="todo__add-button"
+        (click)="addTodo($event)"
     >
       ADD
     </button>
   </mat-card-header>
   <mat-card-content class="todo__list-content">
-    <todo-list-item></todo-list-item>
+    <todo-list-item
+        *ngFor="let todo of todos"
+        [todoItem]="todo"
+    ></todo-list-item>
   </mat-card-content>
   <mat-card-footer class="todo__footer">
     <p>all: 0</p>

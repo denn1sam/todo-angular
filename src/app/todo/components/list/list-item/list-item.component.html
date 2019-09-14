@@ -2,11 +2,11 @@
   <button
       mat-icon-button
   >
-    <mat-icon *ngIf="true">check_box</mat-icon>
-    <mat-icon *ngIf="false">check_box_outline_blank</mat-icon>
+    <mat-icon *ngIf="done">check_box</mat-icon>
+    <mat-icon *ngIf="!done">check_box_outline_blank</mat-icon>
   </button>
 
-  <p>todo</p>
+  <p>{{text}}</p>
 
   <button
       mat-icon-button
