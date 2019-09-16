@@ -30,7 +30,7 @@ export function todoReducer(state: Array<Todo> = initialState, action: TodoActio
         ...state,
         {
           id: +new Date().getTime(),
-          text: 'asd',
+          text: action.text,
           done: false,
         }
       ];

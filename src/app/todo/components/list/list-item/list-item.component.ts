@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from 'src/app/todo/models';
+import { TodoFacade } from '../todo.facade';
 
 @Component({
   selector: 'todo-list-item',
@@ -13,7 +14,11 @@ export class ListItemComponent implements OnInit {
   done: boolean;
   id: number;
 
-  constructor() {
+  editStatus: boolean;
+
+  constructor(
+    readonly todoFacade: TodoFacade,
+  ) {
   }
 
   ngOnInit() {
@@ -22,4 +27,24 @@ export class ListItemComponent implements OnInit {
     this.id = this.todoItem.id;
   }
 
+  doneTodo() {
+    this.todoFacade.doneTodo(this.id);
+  }
+
+  delTodo() {
+    this.todoFacade.delTodo(this.id);
+  }
+
+  editStatusTodo() {
+    this.editStatus = true;
+  }
+
+  setInputValue(text) {
+    this.text = text;
+  }
+
+  editTodo() {
+    this.todoFacade.editTodo(this.id, this.text);
+    this.editStatus = false;
+  }
 }

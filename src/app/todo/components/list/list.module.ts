@@ -30,7 +30,6 @@ import { TODO_FEATURE_KEY, todoReducer } from '../../reducers';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    StoreModule.forRoot({}),
     StoreModule.forFeature(TODO_FEATURE_KEY, todoReducer),
   ],
   declarations: [

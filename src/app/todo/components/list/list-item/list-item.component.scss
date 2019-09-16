@@ -15,3 +15,9 @@
     grid-column: 12 / -1;
   }
 }
+
+.todo {
+  &__input {
+    grid-column: 2 / 12;
+  }
+}

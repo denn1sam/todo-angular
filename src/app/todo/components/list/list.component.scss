@@ -1,6 +1,7 @@
 .todo {
   &__card {
-    width: 500px;
+    max-width: 500px;
+    min-width: 250px;
     margin: 3em auto;
   }
 
@@ -14,7 +15,6 @@
   }
 
   &__add-button {
-    font-size: 1.5em;
     height: calc(100% - 25.5px);
   }
 
@@ -30,4 +30,8 @@
 ::ng-deep .mat-card-header-text {
   grid-column: 1 / -1;
   padding: 0 0 1em 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.5em 0;
 }

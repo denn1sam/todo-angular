@@ -17,7 +17,7 @@
         class="todo__add-button"
         (click)="addTodo($event)"
     >
-      ADD
+      <mat-icon>add</mat-icon>
     </button>
   </mat-card-header>
   <mat-card-content class="todo__list-content">
@@ -27,7 +27,7 @@
     ></todo-list-item>
   </mat-card-content>
   <mat-card-footer class="todo__footer">
-    <p>all: 0</p>
-    <p>done: 0</p>
+    <p>all: {{todosLength}}</p>
+    <p>done: {{doneCount}}</p>
   </mat-card-footer>
 </mat-card>

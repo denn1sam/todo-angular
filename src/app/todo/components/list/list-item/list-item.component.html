@@ -2,17 +2,45 @@
   <button
       mat-icon-button
   >
+    <mat-icon
+        *ngIf="!done"
+        (click)="doneTodo()"
+    >
+      check_box_outline_blank
+    </mat-icon>
     <mat-icon *ngIf="done">check_box</mat-icon>
-    <mat-icon *ngIf="!done">check_box_outline_blank</mat-icon>
   </button>
 
-  <p>{{text}}</p>
+  <p
+      (dblclick)="editStatusTodo()"
+      *ngIf="!editStatus"
+  >
+    {{text}}
+  </p>
+
+  <todo-input
+      [currentValue]="text"
+      *ngIf="editStatus"
+      class="todo__input"
+      (inputValue)="setInputValue($event)"
+  >
+  </todo-input>
 
   <button
       mat-icon-button
       class="list__action-btn"
   >
-    <mat-icon *ngIf="true">delete_forever</mat-icon>
-    <mat-icon *ngIf="false">save</mat-icon>
+    <mat-icon
+        *ngIf="!editStatus"
+        (click)="delTodo()"
+    >
+      delete_forever
+    </mat-icon>
+    <mat-icon
+        *ngIf="editStatus"
+        (click)="editTodo()"
+    >
+      save
+    </mat-icon>
   </button>
 </div>

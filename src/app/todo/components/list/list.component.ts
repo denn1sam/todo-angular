@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Todo } from '../../models';
@@ -11,15 +11,24 @@ import { TODO_FEATURE_KEY } from '../../reducers';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   todos: Array<Todo>;
-  inputValue: any;
+  inputValue: string;
+
+  todosLength: number;
+  doneCount: number;
 
   constructor(
     readonly todoFacade: TodoFacade,
     readonly store: Store<Array<Todo>>,
   ) {
-    store.select(TODO_FEATURE_KEY).subscribe((todos) => this.todos = todos);
+  }
+
+  ngOnInit(): void {
+    this.store.select(TODO_FEATURE_KEY).subscribe((todos) => {
+      this.todos = todos;
+      this.setTodoItemsGeneralInfo(todos);
+    });
   }
 
   setInputValue(text: string): void {
@@ -27,18 +36,17 @@ export class ListComponent {
   }
 
   addTodo() {
-    this.todoFacade.addTodo(this.inputValue);
-  }
-
-  delTodo(id: number) {
-    this.todoFacade.delTodo(id);
-  }
-
-  doneTodo(id: number) {
-    this.todoFacade.doneTodo(id);
+    if (this.inputValue && this.inputValue.length) {
+      this.todoFacade.addTodo(this.inputValue);
+    }
   }
 
   editTodo(id: number, text: string) {
     this.todoFacade.editTodo(id, text);
+  }
+
+  setTodoItemsGeneralInfo(todos: Todo[]): void {
+    this.todosLength = todos.length;
+    this.doneCount = todos.filter((item) => item.done).length;
   }
 }
