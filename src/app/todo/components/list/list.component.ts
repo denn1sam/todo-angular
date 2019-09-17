@@ -41,10 +41,6 @@ export class ListComponent implements OnInit {
     }
   }
 
-  editTodo(id: number, text: string) {
-    this.todoFacade.editTodo(id, text);
-  }
-
   setTodoItemsGeneralInfo(todos: Todo[]): void {
     this.todosLength = todos.length;
     this.doneCount = todos.filter((item) => item.done).length;

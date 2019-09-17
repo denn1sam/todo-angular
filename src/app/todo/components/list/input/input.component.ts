@@ -20,4 +20,9 @@ export class InputComponent implements OnInit {
   inputValueChanged(event: any): void {
     this.inputValue.emit(event.target.value);
   }
+
+  clearInput(): void {
+    this.value = '';
+    this.inputValue.emit('');
+  }
 }

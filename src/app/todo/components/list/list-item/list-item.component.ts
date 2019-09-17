@@ -44,7 +44,9 @@ export class ListItemComponent implements OnInit {
   }
 
   editTodo() {
-    this.todoFacade.editTodo(this.id, this.text);
-    this.editStatus = false;
+    if (this.text.length) {
+      this.todoFacade.editTodo(this.id, this.text);
+      this.editStatus = false;
+    }
   }
 }
