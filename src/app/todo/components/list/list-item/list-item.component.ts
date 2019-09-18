@@ -36,7 +36,9 @@ export class ListItemComponent implements OnInit {
   }
 
   editStatusTodo() {
-    this.editStatus = true;
+    if (!this.done) {
+      this.editStatus = true;
+    }
   }
 
   setInputValue(text) {

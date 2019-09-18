@@ -22,7 +22,8 @@ export const initialState: Array<Todo> = [
 export const TODO_FEATURE_KEY = 'todo';
 
 export function todoReducer(state: Array<Todo> = initialState, action: TodoActions): Array<Todo> {
-  let currentItem;
+  let currentItem: Todo;
+  let index: number;
 
   switch (action.type) {
     case TodoActionTypes.ADD_TODO:
@@ -38,14 +39,23 @@ export function todoReducer(state: Array<Todo> = initialState, action: TodoActio
       return state.filter((item) => item.id !== action.id);
     case TodoActionTypes.DONE_TODO:
       currentItem = state.find((item) => item.id === action.id);
-      currentItem.done = true;
+      index = state.indexOf(currentItem);
 
-      return state;
+      return [
+        ...state.slice(0, index),
+        Object.assign({}, currentItem, { done: !currentItem.done }),
+        ...state.slice(index + 1),
+      ];
+
     case TodoActionTypes.EDIT_TODO:
       currentItem = state.find((item) => item.id === action.id);
-      currentItem.text = action.text;
+      index = state.indexOf(currentItem);
 
-      return state;
+      return [
+        ...state.slice(0, index),
+        Object.assign({}, currentItem, { text: action.text }),
+        ...state.slice(index + 1),
+      ];
 
     default:
       return state;

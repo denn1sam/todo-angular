@@ -9,6 +9,8 @@ export class InputComponent implements OnInit {
   @Output() inputValue: EventEmitter<any> = new EventEmitter();
   @Input() currentValue: string;
 
+  // @ViewChild('inputValue', {static: false}) todoInput: ElementRef;
+
   value: string;
 
   constructor() { }

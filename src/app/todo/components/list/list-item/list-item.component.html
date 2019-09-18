@@ -1,15 +1,11 @@
 <div class="list__item">
-  <button
-      mat-icon-button
-  >
-    <mat-icon
-        *ngIf="!done"
-        (click)="doneTodo()"
-    >
-      check_box_outline_blank
-    </mat-icon>
-    <mat-icon *ngIf="done">check_box</mat-icon>
+  <button mat-icon-button>
+    <mat-icon *ngIf="!todoItem.done; else done" (click)="doneTodo()">check_box_outline_blank</mat-icon>
+    <ng-template #done>
+      <mat-icon>check_box</mat-icon>
+    </ng-template>
   </button>
+
 
   <p
       (dblclick)="editStatusTodo()"
@@ -30,17 +26,7 @@
       mat-icon-button
       class="list__action-btn"
   >
-    <mat-icon
-        *ngIf="!editStatus"
-        (click)="delTodo()"
-    >
-      delete_forever
-    </mat-icon>
-    <mat-icon
-        *ngIf="editStatus"
-        (click)="editTodo()"
-    >
-      save
-    </mat-icon>
+    <mat-icon *ngIf="!editStatus" (click)="delTodo()">delete_forever</mat-icon>
+    <mat-icon *ngIf="editStatus" (click)="editTodo()">save</mat-icon>
   </button>
 </div>
