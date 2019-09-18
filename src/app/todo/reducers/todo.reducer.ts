@@ -1,31 +1,15 @@
 import { Todo } from '../models/todo.model';
 import { TodoActions, TodoActionTypes } from '../actions';
 
-export const initialState: Array<Todo> = [
-  {
-    id: +new Date().getTime(),
-    text: 'eat',
-    done: false,
-  },
-  {
-    id: +new Date().getTime() + 1,
-    text: 'seat',
-    done: false,
-  },
-  {
-    id: +new Date().getTime() + 2,
-    text: 'qwe',
-    done: true,
-  },
-];
-
 export const TODO_FEATURE_KEY = 'todo';
 
-export function todoReducer(state: Array<Todo> = initialState, action: TodoActions): Array<Todo> {
+export function todoReducer(state: Array<Todo> = [], action: TodoActions): Array<Todo> {
   let currentItem: Todo;
   let index: number;
 
   switch (action.type) {
+    case TodoActionTypes.SET_TODO:
+      return action.initialState;
     case TodoActionTypes.ADD_TODO:
       return [
         ...state,
@@ -59,5 +43,5 @@ export function todoReducer(state: Array<Todo> = initialState, action: TodoActio
 
     default:
       return state;
-  }
+    }
 }

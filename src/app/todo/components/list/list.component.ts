@@ -25,9 +25,11 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todoFacade.fetchTodos();
     this.store.select(TODO_FEATURE_KEY).subscribe((todos) => {
       this.todos = todos;
       this.setTodoItemsGeneralInfo(todos);
+      this.todoFacade.setTodosToLocaleStorage(todos);
     });
   }
 
