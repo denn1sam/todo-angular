@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Todo } from '../../models';
 
 import { TodoFacade } from './todo.facade';
 import { TODO_FEATURE_KEY } from '../../reducers';
+import { InputComponent } from './input/input.component';
 
 @Component({
   selector: 'todo-list',
@@ -17,6 +18,8 @@ export class ListComponent implements OnInit {
 
   todosLength: number;
   doneCount: number;
+
+  @ViewChild(InputComponent, {static: false}) inputComponent: InputComponent;
 
   constructor(
     readonly todoFacade: TodoFacade,
@@ -40,11 +43,12 @@ export class ListComponent implements OnInit {
   addTodo() {
     if (this.inputValue && this.inputValue.length) {
       this.todoFacade.addTodo(this.inputValue);
+      this.inputComponent.clearInput();
     }
   }
 
   setTodoItemsGeneralInfo(todos: Todo[]): void {
-    this.todosLength = todos.length;
-    this.doneCount = todos.filter((item) => item.done).length;
+    this.todosLength = todos && todos.length;
+    this.doneCount = todos && todos.filter((item) => item.done).length;
   }
 }

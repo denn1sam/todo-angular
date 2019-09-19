@@ -17,7 +17,7 @@ describe('InputComponent', () => {
         value: 'value',
       }
     }
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,9 +47,21 @@ describe('InputComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // fit('should input value change', () => {
-  //   component.inputValueChanged(ctx.event);
+  it('should emit input value change', () => {
+    spyOn(component.inputValue, 'emit');
 
-  //   expect(spyOn(component.inputValue, 'emit')).toHaveBeenCalled();
-  // });
+    component.inputValueChanged(ctx.event);
+
+    expect(component.inputValue.emit).toHaveBeenCalled();
+  });
+
+  it('should clear input value', () => {
+    component.value = 'test';
+    spyOn(component.inputValue, 'emit');
+
+    component.clearInput();
+
+    expect(component.value).toEqual('');
+    expect(component.inputValue.emit).toHaveBeenCalled();
+  });
 });

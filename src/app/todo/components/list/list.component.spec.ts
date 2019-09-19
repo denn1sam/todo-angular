@@ -34,7 +34,7 @@ describe('ListComponent', () => {
         done: true,
       },
     ],
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -82,14 +82,15 @@ describe('ListComponent', () => {
   it('should run ngOnInit', () => {
     component.ngOnInit();
 
-    expect(component.todos.length).toEqual(3);
+    expect(component.todos.length).toEqual(0);
   });
 
-  // it('should run facade.addTodo', () => {
-  //   component.inputValue = 'test';
+  it('should run facade.addTodo', () => {
+    component.inputValue = 'test';
+    spyOn(component.todoFacade, 'addTodo');
 
-  //   component.addTodo();
+    component.addTodo();
 
-  //   expect(spyOn(component.todoFacade, 'addTodo')).toHaveBeenCalled();
-  // });
+    expect(component.todoFacade.addTodo).toHaveBeenCalled();
+  });
 });

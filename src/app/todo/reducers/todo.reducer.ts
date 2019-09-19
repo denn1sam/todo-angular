@@ -3,9 +3,11 @@ import { TodoActions, TodoActionTypes } from '../actions';
 
 export const TODO_FEATURE_KEY = 'todo';
 
-export function todoReducer(state: Array<Todo> = [], action: TodoActions): Array<Todo> {
+export function todoReducer(state: Array<Todo>, action: TodoActions): Array<Todo> {
   let currentItem: Todo;
   let index: number;
+
+  state = state ? state : [];
 
   switch (action.type) {
     case TodoActionTypes.SET_TODO:
